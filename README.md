@@ -8,7 +8,7 @@ Literally created with a TrackPoint, while sitting in a hotel room in Boston in 
 ## [vad1.svg](vad1.svg)
 The first real attempt.
 Originally drawn on a Wacom tablet, outline only.
-The raptor outline was cleaned cleaned up by hand and simplified, and is more or less what you know and love today.
+The raptor outline was cleaned up by hand and simplified, and is more or less what you know and love today.
 However, somewhere along the way I lost the path info for the bomb and was unable to simplify it, so it looks a lot worse than the raptor overall.
 
 ## [vad2000.svg](vad2000.svg)
