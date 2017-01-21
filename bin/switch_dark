@@ -11,8 +11,7 @@ for g in root.findall('{http://www.w3.org/2000/svg}g'):
         g.attrib['style'] = 'display:none'
     if g.attrib['{http://www.inkscape.org/namespaces/inkscape}label'] == 'Dark':
         g.attrib['style'] = 'display:inline'
-        for subg in g.findall('{http://www.w3.org/2000/svg}g'):
-            if subg.attrib['{http://www.inkscape.org/namespaces/inkscape}label'] == 'Dark test background':
-                subg.attrib['style'] = 'display:none'
+for namedview in root.findall('{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview'):
+    namedview.attrib['pagecolor'] = '#000000'
 
 tree.write(sys.argv[2])
