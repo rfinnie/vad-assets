@@ -1,8 +1,6 @@
-.PHONY: png all clean
+.PHONY: all clean
 
-all: compiled
-
-compiled: compiled/vad2000.svg compiled/vad2000_dark.svg compiled/vad2000.png compiled/vad2000_dark.png
+all: compiled/vad2000.svg compiled/vad2000_dark.svg compiled/vad2000.png compiled/vad2000_dark.png
 
 clean:
 	rm -f compiled/*.svg compiled/*.png
