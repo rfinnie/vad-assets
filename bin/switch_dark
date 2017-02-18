@@ -6,11 +6,16 @@ import sys
 tree = ET.parse(sys.argv[1])
 root = tree.getroot()
 
-for g in root.findall('{http://www.w3.org/2000/svg}g'):
-    if g.attrib['{http://www.inkscape.org/namespaces/inkscape}label'] == 'Regular':
-        g.attrib['style'] = 'display:none'
-    if g.attrib['{http://www.inkscape.org/namespaces/inkscape}label'] == 'Dark':
-        g.attrib['style'] = 'display:inline'
+root.find('{http://www.w3.org/2000/svg}title').text += ' (Dark)'
+for w in root.iter('{http://creativecommons.org/ns#}Work'):
+    w.find('{http://purl.org/dc/elements/1.1/}title').text += ' (Dark)'
+for p in root.iter('{http://www.w3.org/2000/svg}path'):
+    if 'style' not in p.attrib:
+        continue
+    p.attrib['style'] = p.attrib['style'].replace('#000000', '#ffffff')
+    p.attrib['style'] = p.attrib['style'].replace('#90ab99', '#5e7a67')
+    p.attrib['style'] = p.attrib['style'].replace('#e2e2e2', '#a9a9a9')
+    p.attrib['style'] = p.attrib['style'].replace('#9a9a9a', '#686868')
 for namedview in root.findall('{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview'):
     namedview.attrib['pagecolor'] = '#000000'
 

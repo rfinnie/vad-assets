@@ -12,7 +12,6 @@ The raptor outline was cleaned up by hand and simplified, and is more or less wh
 However, somewhere along the way I lost the path info for the bomb and was unable to simplify it, so it looks a lot worse than the raptor overall.
 
 ## [vad2000.svg](vad2000.svg)
-The current generation, with all the bells and whistles.
+The current generation, with all the bells, whistles, and colors.
 I redid the bomb completely, with curved vectors replacing the original hand-drawn lines.
 (Science!)
-There are also color fills, along with a set of hidden layers with an alternative dark theme.
