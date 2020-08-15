@@ -9,26 +9,32 @@ tree = ET.parse(sys.stdin.buffer)
 root = tree.getroot()
 
 color_replacements = (
-    ('#000000', '#ffffff'),
-    ('#90ab99', '#5e7a67'),
-    ('#e2e2e2', '#a9a9a9'),
-    ('#9a9a9a', '#686868'),
+    ("#000000", "#ffffff"),
+    ("#90ab99", "#5e7a67"),
+    ("#e2e2e2", "#a9a9a9"),
+    ("#9a9a9a", "#686868"),
 )
 
-root.find('{http://www.w3.org/2000/svg}title').text += ' (Dark)'
-for w in root.iter('{http://creativecommons.org/ns#}Work'):
-    title = w.find('{http://purl.org/dc/elements/1.1/}title')
-    logging.debug('{}: s/{}/{} (Dark)/'.format(title.tag, title.text, title.text))
-    title.text += ' (Dark)'
-for p in root.iter('{http://www.w3.org/2000/svg}path'):
-    if 'style' not in p.attrib:
+root.find("{http://www.w3.org/2000/svg}title").text += " (Dark)"
+for w in root.iter("{http://creativecommons.org/ns#}Work"):
+    title = w.find("{http://purl.org/dc/elements/1.1/}title")
+    logging.debug("{}: s/{}/{} (Dark)/".format(title.tag, title.text, title.text))
+    title.text += " (Dark)"
+for p in root.iter("{http://www.w3.org/2000/svg}path"):
+    if "style" not in p.attrib:
         continue
     for a, b in color_replacements:
-        if a in p.attrib['style']:
-            logging.debug('{} {} style: s/{}/{}/'.format(p.tag, p.attrib['id'], a, b))
-            p.attrib['style'] = p.attrib['style'].replace(a, b)
-for namedview in root.findall('{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview'):
-    logging.debug('{} {} pagecolor: s/{}/#000000/'.format(namedview.tag, namedview.attrib['id'], namedview.attrib['pagecolor']))
-    namedview.attrib['pagecolor'] = '#000000'
+        if a in p.attrib["style"]:
+            logging.debug("{} {} style: s/{}/{}/".format(p.tag, p.attrib["id"], a, b))
+            p.attrib["style"] = p.attrib["style"].replace(a, b)
+for namedview in root.findall(
+    "{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview"
+):
+    logging.debug(
+        "{} {} pagecolor: s/{}/#000000/".format(
+            namedview.tag, namedview.attrib["id"], namedview.attrib["pagecolor"]
+        )
+    )
+    namedview.attrib["pagecolor"] = "#000000"
 
 tree.write(sys.stdout.buffer)
