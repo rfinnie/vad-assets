@@ -1,0 +1,20 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Dependency packages
+      run: |
+        sudo apt-get update
+        sudo apt -y install librsvg2-bin
+    - name: Make
+      run: make
+    - name: Assemble tarball
+      run: tar zcvf vad-assets.tar.gz --exclude=vad-assets.tar.gz --exclude='.git*' *
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: vad-assets.${{ github.workflow }}.${{ github.job }}.${{ github.run_number }}.${{ github.run_id }}
+        path: vad-assets.tar.gz
