@@ -1,0 +1,53 @@
+# SPDX-PackageName: vad-assets
+# SPDX-PackageSupplier: Ryan Finnie <ryan@finnie.org>
+# SPDX-PackageDownloadLocation: https://forge.colobox.com/rfinnie/vad-assets
+# SPDX-FileComment: Woodpecker CI ci workflow
+# SPDX-FileCopyrightText: © 2026 Ryan Finnie <ryan@finnie.org>
+# SPDX-License-Identifier: GPL-2.0-or-later
+---
+when:
+  - event: ["push", "pull_request", "manual"]
+labels:
+  platform: "linux/amd64"
+steps:
+  - name: "CI"
+    image: "debian"
+    commands: |
+      set -x
+
+      mkdir -p /etc/apt/apt.conf.d
+      cat <<"EOM" >/etc/apt/apt.conf.d/99proxy
+      Acquire::http::Proxy "http://deb-proxy.snowman.lan:8000";
+      Acquire::https::Proxy "http://deb-proxy.snowman.lan:8000";
+      EOM
+
+      # Dependency packages
+      apt-get update
+      apt-get -y install make python3 librsvg2-bin curl
+
+      # Build
+      make
+
+      # Assemble tarball
+      tar zcvf vad-assets.tar.gz --exclude=vad-assets.tar.gz --exclude='.git*' *
+
+      # Upload dist
+      artifact_fn="${CI_REPO_NAME}-${CI_PIPELINE_CREATED}-${CI_WORKFLOW_NAME}-${CI_PIPELINE_NUMBER}.tar.gz"
+      curl --fail-with-body -T vad-assets.tar.gz -H "Authorization: Basic $${ASSETS_AUTH}" "http://artifacts.snowman.lan/$${artifact_fn}"
+    environment:
+      ASSETS_AUTH:
+        from_secret: "ASSETS_AUTH"
+  - name: "Notify Mastodon if failure"
+    when:
+      - status: ["failure"]
+    image: "woodpeckerci/plugin-mastodon-post"
+    settings:
+      server_url: "https://m29.us"
+      access_token:
+        from_secret: "m29_token"
+      status: |
+        🪿 🪿 🪿 FAILURE: {{ CI_REPO }} 🪿 🪿 🪿
+        Workflow: {{ CI_WORKFLOW_NAME }} ({{ CI_PIPELINE_EVENT }} on {{ CI_COMMIT_REF }})
+
+        Pipeline: {{ CI_PIPELINE_URL }}
+        Commit: {{ CI_PIPELINE_FORGE_URL }}
