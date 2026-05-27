@@ -1,12 +1,8 @@
 # SPDX-PackageName: vad-assets
 # SPDX-PackageSupplier: Ryan Finnie <ryan@finnie.org>
 # SPDX-PackageDownloadLocation: https://forge.colobox.com/rfinnie/vad-assets
-# SPDX-FileCopyrightText: © 2016 Ryan Finnie <ryan@finnie.org>
+# SPDX-FileComment: pyproject configs
+# SPDX-FileCopyrightText: © 2026 Ryan Finnie <ryan@finnie.org>
 # SPDX-License-Identifier: MPL-2.0
-*.swp
-manual/
-vad-assets.tar.gz
-vad2000_dark.png
-vad2000_dark.svg
-vad2000_light.png
-vad2000_light.svg
+[tool.black]
+line-length = 132

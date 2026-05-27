@@ -1,3 +1,9 @@
+# SPDX-PackageName: vad-assets
+# SPDX-PackageSupplier: Ryan Finnie <ryan@finnie.org>
+# SPDX-PackageDownloadLocation: https://forge.colobox.com/rfinnie/vad-assets
+# SPDX-FileCopyrightText: © 2016 Ryan Finnie <ryan@finnie.org>
+# SPDX-License-Identifier: MPL-2.0
+
 .PHONY: all clean
 
 TARGETS := vad2000_light.svg vad2000_dark.svg vad2000_light.png vad2000_dark.png

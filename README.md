@@ -19,4 +19,13 @@ I redid the bomb completely, with curved vectors replacing the original hand-dra
 (Science!)
 
 ## License
-The logos (whether in SVG or compiled PNG form) are available under a [Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)](https://creativecommons.org/licenses/by-sa/3.0/deed.en) license.
+The logos (whether in SVG or compiled PNG form) are available under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license.
+
+This document is provided under the following license:
+
+    SPDX-PackageName: vad-assets
+    SPDX-PackageSupplier: Ryan Finnie <ryan@finnie.org>
+    SPDX-PackageDownloadLocation: https://forge.colobox.com/rfinnie/rf-lint
+    SPDX-FileComment: README
+    SPDX-FileCopyrightText: © 2016 Ryan Finnie <ryan@finnie.org>
+    SPDX-License-Identifier: CC-BY-SA-4.0
